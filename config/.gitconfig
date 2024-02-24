@@ -1,0 +1,29 @@
+[user]
+	name = cocozzang
+  email = cocozz503@naver.com
+
+[init]
+  defaultBranch = main
+
+[alias]
+	aliases = config --get-regexp '^alias\\.'
+	last = log -1 HEAD
+	co = checkout
+	rb = rebase -i
+	st = status
+	cm = commit -m
+	pl = pull
+	ps = push
+	ad = add
+	tg = tag -n
+	df = diff
+	br = branch
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(cyan)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)'
+	amend = commit --amend --no-edit
+
+[core]
+	autocrlf = input
+
+[commit]
+  gpgSign = true
+

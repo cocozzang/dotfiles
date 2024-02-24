@@ -1,0 +1,14 @@
+git:
+  paging:
+    useConfig: true
+  commit:
+    signOff: false
+commitLength:
+  show: true
+mouseEvents: true
+nerdFontsVersion: "2" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
+showFileTree: true # for rendering changes files in a tree format
+showListFooter: true # for seeing the '5 of 20' message in list panels
+showRandomTip: true
+showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
+showCommandLog: true
