@@ -79,6 +79,8 @@ setup_symlink() {
 nerd_font_info() {
 	echo -e "\x1b[2;30;103m \x1b[4mhttps://www.nerdfonts.com/font-downloads\x1b[24m 에서 MesloLGLNerdFont를 다운받고 \x1b[0m
 \x1b[2;30;103m window terminal emulator내의 ubuntu profile font를 MesloLGL Nerd Font로 바꿔 \x1b[0m \n"
+
+	read -p "Nerd font 적용이 완료되었으면 Enter를 눌러 계속진행하기"
 }
 
 # generate ssh for github
@@ -89,6 +91,7 @@ gen_ssh() {
 	cat ~/.ssh/id_rsa.pub
 	echo ~/.ssh/id_rsa.pub | xclip -sel clip
 	echo -e "\x1b[2;30;103m ssh 공개키가 클립보드에 복사되었습니다. github에 등록하세요 \x1b[0m \n"
+	read -p "등록이 완료되었으면 Enter를 눌러 계속"
 }
 
 # https://docs.github.com/ko/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
@@ -97,11 +100,21 @@ gen_gpg() {
 	gpg --list-secret-keys --keyid-format=long
 	echo "gpg --armor --export [key] 를 입력하고 해당 출력을 github에 등록하세요."
 	echo "git config --global user.signingkey [key]로 gitconfig파일에 gpg key추가하기"
+	read -p "등록이 완료되었으면 Enter를 눌러 계속"
+}
+
+# https://github.com/bfrg/gpg-guide/blob/master/gpg-agent.conf
+# gpg password 입력주기 늘리기 default는 600초임
+gen_gpg_agent_conf() {
+	if [[ -e ~/.gnupg ]]; then
+		echo -e "default-cache-ttl 36000 # 10시간\nmax-cache-ttl 36000 # 10시간" >>gpg-agent.conf
+		sleep 1
+		gpg-connect-agent reloadagent
+	fi
 }
 
 setting_wsl_ubuntu() {
 	nerd_font_info
-	read -p "Nerd font 적용이 완료되었으면 Enter를 눌러 계속진행하기"
 
 	sudo apt update && apt install "${common_packages[@]}"
 	install_packages
@@ -109,4 +122,7 @@ setting_wsl_ubuntu() {
 
 	gen_ssh
 	gen_gpg
+	gen_gpg_agent_conf
 }
+
+setting_wsl_ubuntu
