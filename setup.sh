@@ -106,10 +106,12 @@ gen_gpg() {
 # https://github.com/bfrg/gpg-guide/blob/master/gpg-agent.conf
 # gpg password 입력주기 늘리기 default는 600초임
 gen_gpg_agent_conf() {
-	if [[ -e ~/.gnupg ]]; then
-		echo -e "default-cache-ttl 36000 # 10시간\nmax-cache-ttl 36000 # 10시간" >>gpg-agent.conf
+	if [[ -d ~/.gnupg ]]; then
+		echo -e "default-cache-ttl 36000 # 10시간\nmax-cache-ttl 36000 # 10시간" >>~/.gnupg/gpg-agent.conf
 		sleep 1
 		gpg-connect-agent reloadagent
+	else
+		echo -e "\x1b[1;91m ~/.gnupg 폴더가 존재하지 않습니다. gpg키 생성이 완료되었는지 확인해주세요.  \x1b[0m \n"
 	fi
 }
 
