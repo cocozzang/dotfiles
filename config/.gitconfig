@@ -23,6 +23,7 @@
 
 [core]
 	autocrlf = input
+  editor = nvim
 
 [commit]
   gpgSign = true

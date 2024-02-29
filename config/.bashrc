@@ -146,8 +146,7 @@ unset env
 # start ssh-agent end
 
 # for gpg signing  https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
-GPG_TTY=$(tty)
-export GPG_TTY
+export GPG_TTY=$(tty)
 
 # add nvim globally
 export PATH="$PATH:/opt/nvim-linux64/bin"
