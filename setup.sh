@@ -61,7 +61,7 @@ declare -a config_dirs=(
 )
 
 declare -a home_files=(
-	".bashrc" ".bash_aliases" ".gitconfig"
+	".bashrc" ".bash_profile" ".bash_aliases" ".gitconfig"
 )
 
 setup_symlink() {

@@ -4,5 +4,7 @@ alias vi='nvim'
 alias so='source'
 alias chrome='/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe'
 alias nvimrc='cd ~/.config/nvim/ && nvim .'
-alias cdf='cd $(find . -type d -print | fzf --height=40% --layout=reverse )'
+
+# fzf cd
+alias cdf='_cdf'
 alias vf='cdf && nvim .'
