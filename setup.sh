@@ -107,7 +107,7 @@ gen_gpg() {
 # gpg password 입력주기 늘리기 default는 600초임
 gen_gpg_agent_conf() {
 	if [[ -d ~/.gnupg ]]; then
-		echo -e "default-cache-ttl 36000 # 10시간\nmax-cache-ttl 36000 # 10시간" >>~/.gnupg/gpg-agent.conf
+		echo -e "default-cache-ttl 86400  # 24시간\nmax-cache-ttl 86400  # 24시간" >>~/.gnupg/gpg-agent.conf
 		sleep 1
 		gpg-connect-agent reloadagent
 	else
