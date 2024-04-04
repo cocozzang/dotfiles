@@ -3,7 +3,5 @@
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 _cdf() {
-	[ -z "$1" ] &&
-		cd "$(find ~ -type d \( -name .git -o -name node_modules -o -name dist -o -name .next \) -prune -o -type d -print | fzf --height=40% --layout=reverse)" ||
-		cd "$(find "$1" -type d \( -name .git -o -name node_modules -o -name dist -o -name .next \) -prune -o -type d -print | fzf --height=40% --layout=reverse)"
+	cd "$(find ~/dev/ -type d \( -name .git -o -name node_modules -o -name dist -o -name .next -o -name docker-volume* \) -prune -o -type d -print | fzf --height=40% --layout=reverse)"
 }
