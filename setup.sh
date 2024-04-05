@@ -156,11 +156,11 @@ main() {
 
 	read -r option
 	case $option in
-	"0") echo setup_dotfiles ;;
-	"1") echo setup_symlink ;;
-	"2") echo install_packages ;;
-	"3") echo gen_secret ;;
-	"4") echo backup_configs ;;
+	"0") setup_dotfiles ;;
+	"1") setup_symlink ;;
+	"2") install_packages ;;
+	"3") gen_secret ;;
+	"4") backup_configs ;;
 	*) echo -e "\e[31;1m see you next time coco! 0ㅅ0 \e[0m" ;;
 	esac
 	exit 0
