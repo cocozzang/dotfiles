@@ -151,4 +151,4 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # 쉘 진입시 oh-my-posh theme 적용
-eval "$(oh-my-posh init bash --config ~/.posh_themes/coco.omp.json)"
+eval "$(oh-my-posh init bash --config ~/dotfiles/config/posh/coco.omp.json)"
