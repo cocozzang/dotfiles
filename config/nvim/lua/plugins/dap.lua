@@ -31,7 +31,8 @@ return {
             request = "launch",
             name = "Launch file",
             program = "${file}",
-            cwd = vim.fn.getcwd(),
+            cwd = "${workspaceFolder}",
+            -- cwd = vim.fn.getcwd(),
             sourceMaps = true,
           },
           -- Debug nodejs processes (make sure to add --inspect when you run the process)
@@ -40,7 +41,8 @@ return {
             request = "attach",
             name = "Attach",
             processId = require("dap.utils").pick_process,
-            cwd = vim.fn.getcwd(),
+            cwd = "${workspaceFolder}",
+            -- cwd = vim.fn.getcwd(),
             sourceMaps = true,
           },
           -- Debug web applications (client side)
@@ -63,10 +65,12 @@ return {
                 end)
               end)
             end,
-            webRoot = vim.fn.getcwd(),
+            cwd = "${workspaceFolder}",
+            -- cwd = vim.fn.getcwd(),
             protocol = "inspector",
             sourceMaps = true,
             userDataDir = false,
+            runtimeExecutable = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe",
           },
           -- Divider for the launch.json derived configs
           {
@@ -98,9 +102,10 @@ return {
           if vim.fn.filereadable(".vscode/launch.json") then
             local dap_vscode = require("dap.ext.vscode")
             dap_vscode.load_launchjs(nil, {
+              ["node"] = js_based_languages,
               ["pwa-node"] = js_based_languages,
-              ["chrome"] = js_based_languages,
               ["pwa-chrome"] = js_based_languages,
+              -- ["chrome"] = js_based_languages,
             })
           end
           require("dap").continue()
@@ -138,6 +143,7 @@ return {
               "pwa-msedge",
               "pwa-extensionHost",
               "node-terminal",
+              "node",
             },
 
             -- Path for file logging
