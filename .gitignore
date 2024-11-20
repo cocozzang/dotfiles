@@ -1,2 +1,6 @@
 config/lazygit/state.yml
 config/lazygit/.tmp
+config/.config/go
+.gnupg
+.ssh
+

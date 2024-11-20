@@ -1,0 +1,18 @@
+_cdf() {
+    cd "$(noglob find ~/dev/ -type d \( -name .git -o -name node_modules -o -name dist -o -name .next -o -name docker-volume* \) -prune -o -type d -print | fzf --height=40% --layout=reverse)"
+}
+
+alias ls='ls --color'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cls='clear'
+alias v='nvim .'
+alias vi='nvim'
+alias so='source'
+alias chrome='/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe'
+alias nvimrc='cd ~/dotfiles/config/.config/nvim/ && nvim .'
+
+# fzf cd
+alias cdf='_cdf'
+alias vf='cdf && nvim .'

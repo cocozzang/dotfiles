@@ -1,4 +1,4 @@
-# dotfiles for wsl ubuntu
+# dotfiles for wsl arch
 
 ## Setup
 
