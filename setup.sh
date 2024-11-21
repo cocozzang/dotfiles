@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# 1. package install
-# 2. yay , yay package
-# 3. stow linking
-# 3. zsh setting
+# 1. stow linking
+# 2. package install
+# 3. yay , yay package
 # 4. gen ssh gpg
 
 delete_prev_conf() {
