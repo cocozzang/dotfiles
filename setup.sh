@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# 1. package install 
-# 2. yay , yay package 
+# 1. package install
+# 2. yay , yay package
 # 3. stow linking
 # 3. zsh setting
 # 4. gen ssh gpg
 
 declare -a common_packages=(
-  git lazygit zsh curl wget fzf fd ripgrep tree xclip ca-certificates gnupg less python python3 htop
-  openssh rsync avahi reflector trash-cli clang cmake zip unzip docker lua lua51 luarocks stow zoxide
+  git lazygit zsh curl wget fzf fd ripgrep tree xclip ca-certificates gnupg less python python3 htop nodejs-lts-iron npm
+  neofetch openssh rsync avahi reflector trash-cli clang cmake zip unzip docker docker-compose lua lua51 luarocks stow zoxide
 )
 
 install_common_packages() {
@@ -34,7 +34,7 @@ declare -a yay_packages=(
   oh-my-posh
 )
 
-install_lazygit() {
+install_yay_packages() {
   sudo yay -S --needed "${yay_packages[@]}"
 }
 
@@ -48,13 +48,21 @@ delete_prev_conf() {
   done
 }
 
+install_packages() {
+  install_common_packages
+  install_yay
+  install_yay_packages
+}
+
 setup_symlink() {
-  delete_odinary_conf() |
+  delete_prev_conf
   cd ~/dotfiles/config
   stow -t $HOME .
 }
 
 # generate ssh for github
+# clone한 repo가 push되지않는다면 등록된 원격 rpeo를 삭제후 다시 등록하세요.
+# https://docs.github.com/ko/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 gen_ssh() {
   ssh-keygen -t rsa -b 4096 -C "cocozz503@naver.com"
   eval "$(ssh-agent -s)"
@@ -67,8 +75,9 @@ gen_ssh() {
 
 # https://docs.github.com/ko/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
 gen_gpg() {
-  gpg --full-generate-key # RSA & RSA / 4096 / no expire
+  gpg --full-generate-key # RSA & RSA / 4096 / no expire / cocozzang / cocozz503@naver.com
   gpg --list-secret-keys --keyid-format=long
+  # sec   4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10] 에서 3AA5C34371567BD2 부분이 key입니다
   echo "gpg --armor --export [key] 를 입력하고 해당 출력을 github에 등록하세요."
   echo "git config --global user.signingkey [key]로 gitconfig파일에 public gpg key추가하기"
   read -p "등록이 완료되었으면 Enter를 눌러 계속"
@@ -97,8 +106,10 @@ nerd_font_info() {
 \e[2;30;103m window terminal emulator내의 Arch profile font를 CaskaydiaCove Nerd Font를 로 바꿔 \e[0m \n"
 
   read -p "Nerd font 적용이 완료되었으면 Enter를 눌러 계속진행하기"
+  sudo usermod -aG docker $USER
   cd ~
-  source .bashrc
+  chsh $USER
+  /bin/zsh
 }
 
 setup_dotfiles() {

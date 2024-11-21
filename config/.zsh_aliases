@@ -16,3 +16,4 @@ alias nvimrc='cd ~/dotfiles/config/.config/nvim/ && nvim .'
 # fzf cd
 alias cdf='_cdf'
 alias vf='cdf && nvim .'
+alias start-dockerd=sudo dockerd --host=tcp://0.0.0.0:2375 --host=unix:///var/run/docker.sock &

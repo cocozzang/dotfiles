@@ -28,7 +28,6 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
-zinit snippet OMZP::docker
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
@@ -102,3 +101,4 @@ unset env
 # for gpg signing  https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
 export GPG_TTY=$(tty)
 
+[ -f ~/.gnupg/coco.txt.gpg ] && gpg --decrypt $HOME/.gnupg/coco.txt.gpg > /dev/null 2>&1
