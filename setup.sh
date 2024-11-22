@@ -7,11 +7,12 @@
 
 delete_prev_conf() {
   for file in "${prev_conf[@]}"; do
-    rm "~/$file"
+    rm ~/$file
   done
 }
 
 setup_symlink() {
+  sudo pacman -S --needed stow
   delete_prev_conf
   cd ~/dotfiles/config
   stow -t $HOME .
@@ -19,7 +20,7 @@ setup_symlink() {
 
 declare -a common_packages=(
   git lazygit zsh curl wget fzf fd ripgrep tree xclip ca-certificates gnupg less python python3 htop nodejs-lts-iron npm
-  neofetch openssh rsync avahi reflector trash-cli clang cmake zip unzip docker docker-compose lua lua51 luarocks stow zoxide
+  neofetch openssh rsync avahi reflector trash-cli clang cmake zip unzip docker docker-compose lua lua51 luarocks zoxide
 )
 
 install_common_packages() {
@@ -41,7 +42,7 @@ install_yay() {
 }
 
 declare -a yay_packages=(
-  oh-my-posh vim-plug
+  oh-my-posh
 )
 
 install_yay_packages() {
@@ -49,13 +50,15 @@ install_yay_packages() {
 }
 
 declare -a prev_conf=(
-  ".bashrc" ".bash_profile" ".bash_logout" ".bash_history"
+  ".bashrc" ".bash_profile" ".bash_logout"
 )
 
 install_packages() {
   install_common_packages
   install_yay
   install_yay_packages
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 }
 
 # generate ssh for github
@@ -69,6 +72,8 @@ gen_ssh() {
   cat ~/.ssh/id_rsa.pub | xclip -sel clip
   echo -e "\e[2;30;103m ssh 공개키가 클립보드에 복사되었습니다. github에 등록하세요 \e[0m \n"
   read -p "등록이 완료되었으면 Enter를 눌러 계속"
+  echo "ssh test를 해봅시다."
+  ssh -T git@github.com
 }
 
 # https://docs.github.com/ko/authentication/managing-commit-signature-verification/generating-a-new-gpg-key
