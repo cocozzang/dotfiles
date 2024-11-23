@@ -3,4 +3,4 @@ config/lazygit/.tmp
 config/.config/go
 .gnupg
 .ssh
-
+env-api-key.sh

@@ -102,3 +102,5 @@ unset env
 export GPG_TTY=$(tty)
 
 [ -f ~/.gnupg/coco.txt.gpg ] && gpg --decrypt $HOME/.gnupg/coco.txt.gpg > /dev/null 2>&1
+
+source ~/dotfiles/config/env-api-key.sh
