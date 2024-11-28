@@ -101,6 +101,10 @@ unset env
 # for gpg signing  https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
 export GPG_TTY=$(tty)
 
+source ~/dotfiles/config/env-api-key.sh
+
 [ -f ~/.gnupg/coco.txt.gpg ] && gpg --decrypt $HOME/.gnupg/coco.txt.gpg > /dev/null 2>&1
 
-source ~/dotfiles/config/env-api-key.sh
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
