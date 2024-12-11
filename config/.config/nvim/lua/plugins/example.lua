@@ -130,11 +130,17 @@ return {
         "python",
         "query",
         "regex",
-        "tsx",
+        "typescriptreact",
         "typescript",
         "vim",
         "yaml",
+        "prisma",
+        "dockerls",
+        "docker_compose_language_service",
       },
+    },
+    autotag = {
+      enabled = true,
     },
   },
 
@@ -179,9 +185,6 @@ return {
   -- use mini.starter instead of alpha
   { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
-  -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
-
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
@@ -191,6 +194,21 @@ return {
         "shellcheck",
         "shfmt",
         "flake8",
+        "emmet-language-server",
+        "docker-compose-language-service ",
+        "dockerfile-language-server ",
+        "eslint-lsp eslint",
+        "hadolint",
+        "js-debug-adapter",
+        "lua-language-server lua_ls",
+        "markdown-toc",
+        "markdownlint-cli2",
+        "marksman",
+        "prettier",
+        "shfmt",
+        "stylua",
+        "tailwindcss-language-server ",
+        "vtsls",
       },
     },
   },
