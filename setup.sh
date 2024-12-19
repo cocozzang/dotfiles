@@ -112,10 +112,13 @@ nerd_font_info() {
 
   read -p "Nerd font 적용이 완료되었으면 Enter를 눌러 계속진행하기"
 
-  echo "현재 유저 docker group에 추가"
+  echo -e "\e[1;34m현재 유저 docker group에 추가\e[0m"
   sudo usermod -aG docker $USER
 
-  echo -e "chsh \$USER로 현재 유저의 쉘을 zsh로 바꾸고 wsl을 재시작하세요"
+  echo -e "\e[2;30;103m==========================================================================\e[0m\n"
+  echo -e "chsh \$USER로 현재 유저의 쉘을 /bin/zsh로 바꾸고 wsl을 재시작하면 적용됨."
+  echo -e "현재 dotfiles 원격 repo는 https방식이니 삭제 후 ssh방식으로 재연결해주세요.\n"
+  echo -e "\e[2;30;103m==========================================================================\e[0m"
 }
 
 setup_dotfiles() {
