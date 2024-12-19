@@ -67,9 +67,3 @@ require("lazy").setup({
     },
   },
 })
-
-local Plug = vim.fn["plug#"]
-vim.call("plug#begin")
-Plug("AndrewRadev/tagalong.vim")
-vim.call("plug#end")
-vim.cmd("silent! colorscheme seoul256")

@@ -9,6 +9,8 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+  { "AndrewRadev/tagalong.vim" },
+  { "junegunn/seoul256.vim" },
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
