@@ -4,13 +4,26 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    -- add any opts here
+    -- auto_suggestions_provider = "copilot",
+    -- behaviour = {
+    --   auto_suggestions = true,
+    -- },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = {
+        highlight = { enable = true },
+        indent = { enable = true },
+      },
+      ---@param opts TSConfig
+      config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
+      end,
+    },
     "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
@@ -39,6 +52,7 @@ return {
       "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
+        latex = { enabled = false }, -- Disable LaTeX support
       },
       ft = { "markdown", "Avante" },
     },
