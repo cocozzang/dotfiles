@@ -8,6 +8,10 @@ return {
     -- behaviour = {
     --   auto_suggestions = true,
     -- },
+    provider = "openai",
+    openai = {
+      model = "gpt-4o-mini",
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
