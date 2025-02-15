@@ -30,7 +30,7 @@
             "fetch_status": true,
             "fetch_upstream_icon": true
           },
-          "template": "    {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}",
+          "template": "   {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }}",
           "foreground": "#F3C267",
           "type": "git",
           "style": "plain",
@@ -50,6 +50,69 @@
           "foreground": "#98C379",
           "type": "node",
           "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "    \ue738 {{ .Full }}  ",
+          "foreground": "#cc3e44",
+          "type": "java",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "    \ue61e {{ .Full }}  ",
+          "foreground": "#6796e6",
+          "type": "python",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "    \ue61d {{ .Full }}  ",
+          "foreground": "#519aba",
+          "type": "rust",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "    \ue61e {{ .Full }}  ",
+          "foreground": "#6d8086",
+          "type": "cpp",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "    \ue61d {{ .Full }}  ",
+          "foreground": "#6d8086",
+          "type": "c",
+          "style": "plain"
+        },
+        {
+          "type": "shell",
+          "style": "plain",
+          "foreground": "#E06C75",
+          "properties": {
+            "mapped_shell_names": {
+              "bash": "bash",
+              "zsh": "zsh",
+              "fish": "fish"
+            }
+          },
+          "template": " \ue795 {{ .Name }} "
         }
       ]
     },
@@ -65,9 +128,7 @@
           "foreground": "#b8ff75",
           "type": "status",
           "style": "plain",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#E06C75{{ end }}"
-          ]
+          "foreground_templates": ["{{ if gt .Code 0 }}#E06C75{{ end }}"]
         },
         {
           "properties": {
@@ -79,9 +140,7 @@
           "foreground": "#b8ff75",
           "type": "executiontime",
           "style": "diamond",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#E06C75{{ end }}"
-          ]
+          "foreground_templates": ["{{ if gt .Code 0 }}#E06C75{{ end }}"]
         }
       ]
     },
