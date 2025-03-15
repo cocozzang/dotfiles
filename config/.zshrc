@@ -110,3 +110,6 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export TERM=xterm-256color
 
+export ANDROID_HOME=/mnt/c/AndroidAVD
+export ANDROID_ROOT=/mnt/c/Users/cocoz/AppData/Local/Android/Sdk
+export PATH=$ANDROID_ROOT/platform-tools:$ANDROID_ROOT/emulator:$PATH
