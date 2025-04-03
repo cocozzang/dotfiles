@@ -20,7 +20,7 @@ setup_symlink() {
 
 declare -a common_packages=(
   git lazygit zsh curl wget fzf fd ripgrep tree xclip ca-certificates gnupg less python python3 htop nodejs-lts-iron npm pnpm neofetch
-  openssh rsync avahi reflector trash-cli clang cmake zip unzip docker docker-compose lua lua51 luarocks zoxide nautilus gimp vlc
+  openssh rsync avahi reflector trash-cli clang cmake zip unzip docker docker-compose lua lua51 luarocks zoxide nautilus gimp vlc jq
 )
 
 install_common_packages() {
