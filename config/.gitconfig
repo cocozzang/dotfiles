@@ -1,7 +1,7 @@
 [user]
 	name = cocozzang
   email = cocozz503@naver.com
-	signingkey = 49D34EF2BA90CA68
+	signingkey = AE5BFF40522C434F
 
 [init]
   defaultBranch = main

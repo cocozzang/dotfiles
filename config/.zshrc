@@ -115,6 +115,9 @@ export ANDROID_HOME=/mnt/c/AndroidAVD
 export ANDROID_ROOT=/mnt/c/Users/cocoz/AppData/Local/Android/Sdk
 export PATH=$ANDROID_ROOT/platform-tools:$ANDROID_ROOT/emulator:$PATH
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm
+FNM_PATH="/home/coco/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/coco/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
