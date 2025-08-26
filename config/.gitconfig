@@ -29,3 +29,5 @@
 [commit]
   gpgSign = true
 
+[merge]
+  ff = false
