@@ -1,6 +1,10 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-vim.keymap.set({ "n", "i", "v" }, "<C-z>", vim.cmd.undo, { desc = "Undo" })
 vim.keymap.set("n", "<leader><CR>", "o<Esc>", { desc = "new line in nomal mode" })
-vim.keymap.set("i", "<A-a>", "<Esc>A", { desc = "jump to end of line in insert mode" })
+vim.keymap.set("i", "<C-a>", "<Esc>A", { desc = "jump to end of line in insert mode" })
+vim.keymap.set("i", "<D-o>", "<Esc>o", { desc = "jump to next line in insert mode" })
+
+vim.keymap.set("n", "<D-j>", ":m .+1<CR>==", { desc = "Move line down", silent = true })
+vim.keymap.set("n", "<D-k>", ":m .-2<CR>==", { desc = "Move line up", silent = true })
+vim.keymap.set("i", "<D-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down", silent = true })
+vim.keymap.set("i", "<D-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up", silent = true })
+vim.keymap.set("v", "<D-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down", silent = true })
+vim.keymap.set("v", "<D-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up", silent = true })
