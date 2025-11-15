@@ -15,6 +15,7 @@ return {
       "markdown-toc",
       "markdownlint-cli2",
       "marksman",
+      "markdown-oxide",
       "prettier",
       "shfmt",
       "stylua",
