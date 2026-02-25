@@ -5,3 +5,7 @@
 # _cdf() {
 # 	cd "$(find ~/dev/ -type d \( -name .git -o -name node_modules -o -name dist -o -name .next -o -name docker-volume* \) -prune -o -type d -print | fzf --height=40% --layout=reverse)"
 # }
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/coco/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

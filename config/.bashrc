@@ -152,3 +152,7 @@
 #
 # # 쉘 진입시 oh-my-posh theme 적용
 # # eval "$(oh-my-posh init bash --config ~/dotfiles/config/.config/posh/coco.omp.json)"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/coco/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
