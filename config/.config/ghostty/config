@@ -36,4 +36,3 @@ window-decoration = false
 custom-shader-animation = true
 custom-shader = shader/cursor_blaze.glsl
 custom-shader = shader/cursor_smear.glsl
-

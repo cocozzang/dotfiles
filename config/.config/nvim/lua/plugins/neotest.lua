@@ -12,6 +12,7 @@ return {
       ["neotest-jest"] = {
         dap_js_enabled = true,
         -- jestCommand = "npm test --",
+
         -- jset-e2e.json파일은 프로젝트 root경로 또는 test폴더 하위에 있어야함
         jestConfigFile = function()
           local file = vim.fn.expand("%")
