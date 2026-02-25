@@ -32,3 +32,5 @@
 [merge]
   ff = false
 
+[fetch]
+  prune = true
