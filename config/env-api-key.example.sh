@@ -1,0 +1,7 @@
+# export ANTHROPIC_API_KEY=
+# export OPENAI_API_KEY=
+# export AZURE_OPENAI_API_KEY=
+# export BEDROCK_KEYS=
+
+export AWS_PROFILE=
+export GH_PACKAGES_TOKEN=
