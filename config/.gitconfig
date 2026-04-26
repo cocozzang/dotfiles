@@ -1,10 +1,10 @@
 [user]
 	name = cocozzang
-  email = cocozz503@naver.com
-	signingkey = AE5BFF40522C434F
+	email = cocozz503@naver.com
+	signingkey = 14BA99E617238393
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
 
 [alias]
 	aliases = config --get-regexp '^alias\\.'
@@ -24,10 +24,13 @@
 
 [core]
 	autocrlf = input
-  editor = nvim
+	editor = nvim
 
 [commit]
-  gpgSign = true
+	gpgSign = true
 
 [merge]
   ff = false
+
+[fetch]
+  prune = true

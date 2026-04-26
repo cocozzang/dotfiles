@@ -80,6 +80,26 @@
           "foreground": "#519aba",
           "type": "rust",
           "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "\ue61e {{ .Full }}   ",
+          "foreground": "#6d8086",
+          "type": "cpp",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true
+          },
+          "template": "\ue61d {{ .Full }}   ",
+          "foreground": "#6d8086",
+          "type": "c",
+          "style": "plain"
         }
       ]
     },
@@ -87,30 +107,6 @@
       "type": "prompt",
       "alignment": "right",
       "segments": [
-        {
-          "type": "command",
-          "style": "plain",
-          "foreground": "#819CFC",
-          "properties": {
-            "cache_duration": "10s",
-            "command": "top -l 1 | grep 'CPU usage' | awk '{print $3}' | sed 's/%//'"
-          },
-          "template": "  {{ .Output }}%   ",
-          "foreground_templates": [
-            "{{ if gt (atoi .Output) 20 }}#E06C75{{ end }}",
-            "{{ if gt (atoi .Output) 10 }}#F3C267{{ end }}"
-          ]
-        },
-        {
-          "type": "command",
-          "style": "plain",
-          "foreground": "#56B6C2",
-          "properties": {
-            "cache_duration": "10s",
-            "command": "top -l 1 | grep 'PhysMem' | awk '{print $2}'"
-          },
-          "template": "  {{ .Output }}  "
-        },
         {
           "type": "shell",
           "style": "plain",

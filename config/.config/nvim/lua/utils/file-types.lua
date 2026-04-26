@@ -12,15 +12,16 @@ return {
         extension = { rasi = "rasi", rofi = "rasi", wofi = "rasi" },
         filename = {
           ["vifmrc"] = "vim",
-          [".env"] = "dotenv",
-          ["env"] = "dotenv",
         },
         pattern = {
+          ["%.env.*"] = "sh",
+          ["%.env%.[%w_.-]+"] = "sh",
+          ["helmfile.*%.ya?ml"] = "helm",
+          [".*%.conf"] = "nginx",
           [".*/waybar/config"] = "jsonc",
           [".*/mako/config"] = "dosini",
           [".*/kitty/.+%.conf"] = "bash",
           [".*/hypr/.+%.conf"] = "hyprlang",
-          ["%.env%.[%w_.-]+"] = "dotenv",
         },
       })
 

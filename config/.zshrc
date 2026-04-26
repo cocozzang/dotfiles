@@ -1,4 +1,6 @@
 # Set the directory we want to store zinit and plugins
+export XDG_CONFIG_HOME="$HOME/.config"
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
@@ -17,7 +19,8 @@ eval "$(oh-my-posh init zsh --config ~/dotfiles/config/.config/posh/coco.omp.jso
 autoload -Uz compinit && compinit
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma/fast-syntax-highlighting
+zinit light supercrabtree/k
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
@@ -26,7 +29,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
+# zinit snippet OMZP::archlinux
 zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
@@ -57,8 +60,12 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# BSD ls (macOS)에서는 --color 옵션이 다르므로 이렇게 변경:
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -G $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls -G $realpath'
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -100,6 +107,7 @@ unset env
 
 # for gpg signing  https://stackoverflow.com/questions/57591432/gpg-signing-failed-inappropriate-ioctl-for-device-on-macos-with-maven
 export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=0"
 
 # secret api 키를 적용합니당
 source ~/dotfiles/config/env-api-key.sh
@@ -111,13 +119,25 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 export TERM=xterm-256color
 
-export ANDROID_HOME=/mnt/c/AndroidAVD
-export ANDROID_ROOT=/mnt/c/Users/cocoz/AppData/Local/Android/Sdk
-export PATH=$ANDROID_ROOT/platform-tools:$ANDROID_ROOT/emulator:$PATH
+# export ANDROID_HOME=/mnt/c/AndroidAVD
+# export ANDROID_ROOT=/mnt/c/Users/cocoz/AppData/Local/Android/Sdk
+# export PATH=$ANDROID_ROOT/platform-tools:$ANDROID_ROOT/emulator:$PATH
 
 # fnm
-FNM_PATH="/home/coco/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/coco/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+eval "$(fnm env --use-on-cd)"
+
+# bun completions
+[ -s "/Users/coco/.bun/_bun" ] && source "/Users/coco/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/coco/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
