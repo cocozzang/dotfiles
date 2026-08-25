@@ -16,7 +16,7 @@ return {
     workspaces = {
       {
         name = "math",
-        path = vim.fn.expand("~/obsidian/mathmatic/"),
+        path = vim.fn.expand("~/obsidian-note/"),
       },
     },
 
