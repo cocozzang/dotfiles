@@ -42,4 +42,10 @@ wk.add({
   { "<leader>om", "<cmd>MarkdownPreview<cr>", desc = "Markdown preview" },
 })
 
+wk.add({
+  { "<leader>p", group = "+html-preview" },
+  { "<leader>ps", "<cmd>LivePreview start<cr>", desc = "Html preview start" },
+  { "<leader>pc", "<cmd>LivePreview close<cr>", desc = "Html preview close" },
+})
+
 return {}
