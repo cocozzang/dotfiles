@@ -2,6 +2,7 @@ config/lazygit/state.yml
 config/lazygit/.tmp
 config/.config/go
 config/.config/raycast
+config/.config/fish/completions/grok.fish
 config/.config/tmux/*
 !config/.config/tmux/tmux.conf
 
