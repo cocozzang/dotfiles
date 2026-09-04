@@ -1,6 +1,20 @@
 # Set the directory we want to store zinit and plugins
 export XDG_CONFIG_HOME="$HOME/.config"
 
+# Auto-start tmux in interactive local terminals.
+# Skip: already in tmux, nvim/vim :terminal, non-tty (scripts, scp).
+# Prefer an unattached session so Cmd+N reclaims a closed Ghostty window.
+if [[ -o interactive && -t 1 && $TERM != dumb ]] \
+  && [[ -z ${TMUX:-} && -z ${NVIM:-} && -z ${VIM_TERMINAL:-} ]] \
+  && command -v tmux >/dev/null 2>&1; then
+  _tmux_target=$(tmux list-sessions -F '#{?session_attached,,#{session_name}}' 2>/dev/null | awk 'NF {print; exit}')
+  if [[ -n $_tmux_target ]]; then
+    exec tmux attach-session -t "=${_tmux_target}"
+  else
+    exec tmux new-session -A -s main
+  fi
+fi
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
@@ -148,3 +162,6 @@ export PATH="$HOME/.grok/bin:$PATH"
 fpath=(~/.grok/completions/zsh $fpath)
 autoload -Uz compinit && compinit -C
 # <<< grok installer <<<
+
+# Unity CLI
+. "/Users/coco/.unity/env"

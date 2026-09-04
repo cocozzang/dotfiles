@@ -1,0 +1,63 @@
+#!/bin/zsh
+# Ghostty cold start: one window per unattached tmux session.
+# This window takes `main` when that session is unattached; extras are
+# opened via AppleScript so they skip ~/.zshrc and attach directly.
+
+set -eu
+set -o pipefail
+
+if [[ -x /opt/homebrew/bin/tmux ]]; then
+  tmux_bin=/opt/homebrew/bin/tmux
+elif [[ -x /usr/local/bin/tmux ]]; then
+  tmux_bin=/usr/local/bin/tmux
+else
+  tmux_bin=$(command -v tmux) || exec /bin/zsh
+fi
+
+if ! "$tmux_bin" has-session 2>/dev/null; then
+  exec "$tmux_bin" new-session -s main
+fi
+
+unattached=()
+while IFS= read -r name; do
+  [[ -n $name ]] && unattached+=("$name")
+done < <("$tmux_bin" list-sessions -F '#{?session_attached,,#{session_name}}' 2>/dev/null)
+
+if (( ${#unattached} == 0 )); then
+  exec "$tmux_bin" new-session -A -s main
+fi
+
+target=
+rest=()
+for name in "${unattached[@]}"; do
+  if [[ $name == main ]]; then
+    target=main
+  else
+    rest+=("$name")
+  fi
+done
+if [[ -z $target ]]; then
+  target=$unattached[1]
+  rest=($unattached[2,-1])
+fi
+
+as_escape() {
+  local s=$1
+  s=${s//\\/\\\\}
+  s=${s//\"/\\\"}
+  print -r -- "$s"
+}
+
+for name in "${rest[@]}"; do
+  cmd=$(printf '%s attach-session -t %s' "$tmux_bin" "$(printf '%q' "=$name")")
+  as_cmd=$(as_escape "$cmd")
+  osascript >/dev/null <<EOF || true
+tell application "Ghostty"
+  set cfg to new surface configuration
+  set command of cfg to "${as_cmd}"
+  new window with configuration cfg
+end tell
+EOF
+done
+
+exec "$tmux_bin" attach-session -t "=$target"

@@ -3,6 +3,10 @@ font-size = 16
 
 theme = catppuccin-mocha.conf
 
+# Don't restore leftover Ghostty windows; tmux-restore opens one per session.
+window-save-state = never
+initial-command = /Users/coco/.config/ghostty/tmux-restore
+
 gtk-titlebar = false
 window-padding-x = 12
 window-padding-y = 12
@@ -24,6 +28,11 @@ keybind = cmd+opt+x=close_surface
 
 keybind = cmd+opt+z=toggle_split_zoom
 keybind = shift+enter=text:\n
+
+# Ctrl+Shift+letter otherwise collapses to Ctrl+letter (C-h/C-l/C-d).
+# Send xterm extended-key CSI so tmux can bind C-S-h/l to windows.
+keybind = ctrl+shift+h=csi:27;6;104~
+keybind = ctrl+shift+l=csi:27;6;108~
 
 cursor-text = black
 
