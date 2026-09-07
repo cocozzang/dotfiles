@@ -1,22 +1,56 @@
 #!/bin/zsh
-# Ghostty cold start: one window per unattached tmux session.
-# This window takes `main` when that session is unattached; extras are
-# opened via AppleScript so they skip ~/.zshrc and attach directly.
+# Ghostty cold start: restore saved tmux sessions, then one window per
+# unattached session. This window takes `main` when that session is
+# unattached; extras are opened via AppleScript so they skip ~/.zshrc
+# and attach directly.
 
 set -eu
 set -o pipefail
+
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH:-/usr/bin:/bin:/usr/sbin:/sbin}"
 
 if [[ -x /opt/homebrew/bin/tmux ]]; then
   tmux_bin=/opt/homebrew/bin/tmux
 elif [[ -x /usr/local/bin/tmux ]]; then
   tmux_bin=/usr/local/bin/tmux
 else
-  tmux_bin=$(command -v tmux) || exec /bin/zsh
+  tmux_bin=$(command -v tmux) || {
+    [[ ${1:-} == --ensure ]] && exit 0
+    exec /bin/zsh
+  }
 fi
 
-if ! "$tmux_bin" has-session 2>/dev/null; then
-  exec "$tmux_bin" new-session -s main
+# If the server is empty, resurrect last snapshot. A throwaway session
+# keeps the server alive long enough for restore.sh to create the rest.
+ensure_sessions() {
+  if "$tmux_bin" has-session 2>/dev/null; then
+    return 0
+  fi
+
+  "$tmux_bin" new-session -d -s _ghostty_boot
+
+  local restore="$HOME/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh"
+  if [[ -x $restore ]]; then
+    "$tmux_bin" run-shell "$restore" || true
+  fi
+  "$tmux_bin" kill-session -t _ghostty_boot 2>/dev/null || true
+
+  if ! "$tmux_bin" has-session 2>/dev/null; then
+    "$tmux_bin" new-session -d -s main
+  fi
+}
+
+if [[ ${1:-} == --ensure ]]; then
+  ensure_sessions
+  exit 0
 fi
+
+ensure_sessions
 
 unattached=()
 while IFS= read -r name; do

@@ -7,6 +7,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 if [[ -o interactive && -t 1 && $TERM != dumb ]] \
   && [[ -z ${TMUX:-} && -z ${NVIM:-} && -z ${VIM_TERMINAL:-} ]] \
   && command -v tmux >/dev/null 2>&1; then
+  ~/.config/ghostty/tmux-restore --ensure
   _tmux_target=$(tmux list-sessions -F '#{?session_attached,,#{session_name}}' 2>/dev/null | awk 'NF {print; exit}')
   if [[ -n $_tmux_target ]]; then
     exec tmux attach-session -t "=${_tmux_target}"
