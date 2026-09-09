@@ -3,6 +3,7 @@
 # unattached session. This window takes `main` when that session is
 # unattached; extras are opened via AppleScript so they skip ~/.zshrc
 # and attach directly.
+# prefix + Ctrl-s (save current session) / prefix + Ctrl-r (manual restore)
 
 set -eu
 set -o pipefail
