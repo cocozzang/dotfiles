@@ -155,6 +155,7 @@
   },
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
+  "preferredNotifChannel": "ghostty",
   "skipDangerousModePermissionPrompt": true,
   "autoMode": {
     "environment": [
