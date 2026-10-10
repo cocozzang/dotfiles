@@ -4,9 +4,7 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
-    "deny": [
-      "Read(.env.production)"
-    ],
+    "deny": ["Read(.env.production)"],
     "defaultMode": "auto"
   },
   "model": "opus",
@@ -154,9 +152,14 @@
     "refreshInterval": 60
   },
   "alwaysThinkingEnabled": true,
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "tui": "fullscreen",
-  "preferredNotifChannel": "ghostty",
   "skipDangerousModePermissionPrompt": true,
+  "preferredNotifChannel": "ghostty",
   "autoMode": {
     "environment": [
       "### Org-wide",
@@ -184,10 +187,5 @@
       "**Org-specific CLIs**: None configured",
       "routine documentation and issue-tracking work (gh issue create/edit) under this repo's tracker (cocozzang/consulting-platform-business) treated as routine"
     ]
-  },
-  "modelSettings": {
-    "claude-opus-5": {
-      "effortLevel": "xhigh"
-    }
   }
 }
